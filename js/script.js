@@ -52,7 +52,12 @@ function game() {
         && xPos <= pipe[i].x + topTube.width
         && (yPos <= pipe[i].y + topTube.height
         || yPos + bird.height >= pipe[i].y + topTube.height + gap) || yPos + bird.height >= canvas.height - fg.height) {
-        location.reload();
+        // location.reload();
+            ctx.fillRect(0,0,50,50)
+            document.addEventListener('click', (e) => {
+                if (e.clientX >= 0 && e.clientX <= 50 && e.clientY >= 0 && e.clientY <= 50)
+                alert()
+            })
         }
        
         if(pipe[i].x == 5) {
@@ -67,7 +72,7 @@ function game() {
        
         ctx.fillStyle = "#000";
         ctx.font = "10px Verdana";
-        ctx.fillText("Счет: " + score, 10, 10);
+        ctx.fillText("Счет: " + score, 10, 15);
     
     requestAnimationFrame(game)
 }
