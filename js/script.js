@@ -52,11 +52,11 @@ function game() {
         && xPos <= pipe[i].x + topTube.width
         && (yPos <= pipe[i].y + topTube.height
         || yPos + bird.height >= pipe[i].y + topTube.height + gap) || yPos + bird.height >= canvas.height - fg.height) {
-        // location.reload();
+
             ctx.fillRect(0,0,50,50)
             document.addEventListener('click', (e) => {
                 if (e.clientX >= 0 && e.clientX <= 50 && e.clientY >= 0 && e.clientY <= 50)
-                alert()
+                location.reload();
             })
         }
        
