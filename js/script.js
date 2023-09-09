@@ -98,7 +98,7 @@ function game() {
         ctx.fillStyle = "#000";
         ctx.font = "10px Verdana";
         ctx.fillText("Счет: " + score, 10, 15);
-        ctx.fillText("Лучший счет: " + localStorage.getItem('bestScore'), canvas.width - 90, 15);
+        ctx.fillText("Лучший счет: " + localStorage.getItem('bestScore'), canvas.width - 89, 15);
     
     requestAnimationFrame(game)
 }
