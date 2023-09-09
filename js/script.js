@@ -29,6 +29,7 @@ pipe[0] = {
 }
 
 var score = 0;
+var bestScore = 0;
 var playerLose = false
 var xPos = 10;
 var yPos = 150;
@@ -70,7 +71,16 @@ function game() {
         }
        
         if(pipe[i].x == 5) {
-        score++;
+            score++;
+            if (score >= bestScore) {
+                bestScore = score
+                if (bestScore >= localStorage.getItem('bestScore')) {
+                    localStorage.setItem('bestScore', bestScore)
+                }
+
+            }
+            console.log('local: ', localStorage.getItem('bestScore'))
+            console.log('best', bestScore)
         }
     }
        
@@ -81,10 +91,14 @@ function game() {
             yPos += grav;
         }
         
+        if (!localStorage.bestScore) {
+            localStorage.setItem('bestScore', 0)
+        }
        
         ctx.fillStyle = "#000";
         ctx.font = "10px Verdana";
         ctx.fillText("Счет: " + score, 10, 15);
+        ctx.fillText("Лучший счет: " + localStorage.getItem('bestScore'), canvas.width - 90, 15);
     
     requestAnimationFrame(game)
 }
