@@ -16,7 +16,9 @@ downTube.src = 'sprites/flappy_bird_pipeBottom.png';
 var gap = 90;
 
 document.addEventListener("click", () => {
-    yPos -= 25;
+    if (playerLose == false) {
+        yPos -= 25;
+    }
 });
 
 var pipe = [];
@@ -27,7 +29,7 @@ pipe[0] = {
 }
 
 var score = 0;
-
+var playerLose = false
 var xPos = 10;
 var yPos = 150;
 var grav = 1.5;
@@ -39,26 +41,26 @@ function game() {
         ctx.drawImage(topTube, pipe[i].x, pipe[i].y);
         ctx.drawImage(downTube, pipe[i].x, pipe[i].y + topTube.height + gap);
        
-        pipe[i].x--;
+        if (playerLose == false) {
+            pipe[i].x--;
+        }
+
        
         if(pipe[i].x == 90) {
-        pipe.push({
-        x : canvas.width,
-        y : Math.floor(Math.random() * topTube.height) - topTube.height
-        });
+            pipe.push({
+            x : canvas.width,
+            y : Math.floor(Math.random() * topTube.height) - topTube.height
+            });
         }
        
         if(xPos + bird.width >= pipe[i].x
         && xPos <= pipe[i].x + topTube.width
         && (yPos <= pipe[i].y + topTube.height
         || yPos + bird.height >= pipe[i].y + topTube.height + gap) || yPos + bird.height >= canvas.height - fg.height) {
-
-            ctx.fillRect(canvas.width / 2 - 25 , canvas.height / 2 - 25 , 50, 50)
-            document.addEventListener('click', (e) => {
-                if (e.clientX >= canvas.width / 2 + 20 && e.clientX <= canvas.width / 2 +75
-                && e.clientY >= canvas.height / 2 + 50 && e.clientY <= canvas.height / 2 +100) {
-                    location.reload();
-                } 
+            playerLose = true;
+            
+            document.addEventListener('click', () => {
+                location.reload();
             })
 
         }
@@ -66,12 +68,15 @@ function game() {
         if(pipe[i].x == 5) {
         score++;
         }
-        }
+    }
        
         ctx.drawImage(fg, 0, canvas.height - fg.height);
         ctx.drawImage(bird, xPos, yPos);
        
-        yPos += grav;
+        if (playerLose == false) {
+            yPos += grav;
+        }
+        
        
         ctx.fillStyle = "#000";
         ctx.font = "10px Verdana";
