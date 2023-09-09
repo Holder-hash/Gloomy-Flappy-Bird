@@ -67,7 +67,6 @@ function game() {
             document.addEventListener('click', () => {
                 location.reload();
             })
-
         }
        
         if(pipe[i].x == 5) {
