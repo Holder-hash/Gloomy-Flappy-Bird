@@ -62,7 +62,7 @@ function game() {
             ctx.font = "16px Verdana";
             ctx.fillText("Игра окончена!", canvas.width/2 - 60, canvas.height/2);
             ctx.font = "12px Verdana";
-            ctx.fillText("Нажмите на игран для перезапуска.", canvas.width/2 - 110, canvas.height/2 + 20);
+            ctx.fillText("Нажмите на экран для перезапуска.", canvas.width/2 - 110, canvas.height/2 + 20);
             document.addEventListener('click', () => {
                 location.reload();
             })
